@@ -1,9 +1,90 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/index/index",
+	"pages": [{
+			"path": "pages/home/home",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "每日血糖监测",
+				"navigationStyle": "custom",
+				"disableScroll": true
+			}
+		},
+		{
+			"path": "pages/personal-center/personal-center",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/statistics/statistics",
+			"style": {
+				"navigationBarTitleText": "统计",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/user-detail/user-detail",
+			"style": {
+				"navigationBarTitleText": "用户信息",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/target/target",
+			"style": {
+				"navigationBarTitleText": "血糖目标管理",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/about/about",
+			"style": {
+				"navigationBarTitleText": "关于我们",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/attention/attention",
+			"style": {
+				"navigationBarTitleText": "我关注的",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/follow/follow",
+			"style": {
+				"navigationBarTitleText": "关注我的",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/invite/invite",
+			"style": {
+				"navigationBarTitleText": "邀请",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/record-detail/record-detail",
+			"style": {
+				"navigationBarTitleText": "详情",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
+			}
+		},
+		{
+			"path": "pages/user-record/user-record",
+			"style": {
+				"navigationBarTitleText": "血糖记录",
+				"navigationBarTextStyle": "white",
+				"navigationBarBackgroundColor": "#2979ff"
 			}
 		}
 	],
@@ -13,5 +94,27 @@
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
-	"uniIdRouter": {}
+	"tabBar": {
+		"color": "#BFBFBF",
+		"selectedColor": "#4C5CDB",
+		"list": [{
+				"iconPath": "static/images/chart.png",
+				"selectedIconPath": "static/images/chart-active.png",
+				"pagePath": "pages/statistics/statistics",
+				"text": "统计"
+			},
+			{
+				"iconPath": "static/images/home.png",
+				"selectedIconPath": "static/images/home_active.png",
+				"pagePath": "pages/home/home",
+				"text": "首页"
+			},
+			{
+				"iconPath": "static/images/my.png",
+				"selectedIconPath": "static/images/my-active.png",
+				"pagePath": "pages/personal-center/personal-center",
+				"text": "我的"
+			}
+		]
+	}
 }
