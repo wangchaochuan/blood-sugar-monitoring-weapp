@@ -73,7 +73,7 @@ const handleShowRange = () => {
         });
     });
   } else {
-    this.showRangePicker = true;
+    showRangePicker.value = true;
   }
   return;
   // #endif
@@ -143,7 +143,7 @@ onLoad(() => {
     videoAd.onClose((status) => {
       if ((status && status.isEnded) || status === undefined) {
         // 正常播放结束，下发奖励
-        this.showRangePicker = true;
+        showRangePicker.value = true;
       }
     });
   }

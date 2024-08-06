@@ -61,8 +61,8 @@ const emits = defineEmits(["close", "updateUser"]);
 const loading = ref(false);
 
 const oldUser = computed(() => userStore.user);
-const user = ref(oldUser);
-const avatar = ref(oldUser?.avatar);
+const user = ref(oldUser.value);
+const avatar = ref(oldUser.value?.avatar);
 const src = computed(() => {
   return avatar.value?.url ? avatar.value.url : defaultAvatarUrl;
 });

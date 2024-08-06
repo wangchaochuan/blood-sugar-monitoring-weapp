@@ -26,6 +26,7 @@
       <qiun-data-charts
         ontouch
         type="column"
+        canvas2d
         :opts="opts"
         :chartData="chartData"
       />

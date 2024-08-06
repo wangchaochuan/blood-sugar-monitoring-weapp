@@ -18,6 +18,7 @@
           class="confirm"
           type="primary"
           shape="circle"
+          :loading="loading"
           @click="confirm"
           >{{ confirmText }}</u-button
         >
@@ -29,11 +30,13 @@
 <script setup>
 import { ref, computed } from "vue";
 import { onLoad } from "@dcloudio/uni-app";
-import { addNoticeUser } from "@/service/index.js";
+import { addNoticeUser, getUser } from "@/service/index.js";
+import useUserStore from "@/store/user.js";
 
 const type = ref("");
 const userId = ref("");
 const userName = ref("");
+const userStore = useUserStore();
 const curreontUserId = uni.getStorageSync("userId");
 
 const text = computed(() => {
@@ -56,14 +59,20 @@ const cancel = () => {
     url: "/pages/personal-center/personal-center",
   });
 };
-
+const loading = ref(false);
 const confirm = async () => {
-  if (type.value === "follow") {
-    await addNoticeUser(curreontUserId, userId.value);
-  } else {
-    await addNoticeUser(userId.value, curreontUserId);
+  try {
+    if (type.value === "follow") {
+      await addNoticeUser(curreontUserId, userId.value);
+    } else {
+      await addNoticeUser(userId.value, curreontUserId);
+    }
+    const user = await getUser();
+    userStore.setUser(user);
+    cancel();
+  } finally {
+    loading.value = false;
   }
-  cancel();
 };
 
 onLoad((option) => {

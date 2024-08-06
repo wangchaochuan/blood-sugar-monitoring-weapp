@@ -101,7 +101,7 @@ const handleShowRange = () => {
         });
     });
   } else {
-    this.showRangePicker = true;
+    showRangePicker.value = true;
   }
   return;
   // #endif
@@ -174,11 +174,11 @@ const getRecords = () => {
   date.value.forEach((day) => {
     const record = data.recordList.find((v) => v.dateStr?.includes(day));
     limosis.push(record?.limosis?.value ?? 0);
-    afterBreakfast.push(record?.afterBreakfast?.value);
-    beforeLunch.push(record?.beforeLunch?.value);
-    afterLunch.push(record?.afterLunch?.value);
-    beforeDinner.push(record?.beforeDinner?.value);
-    afterDinner.push(record?.afterDinner?.value);
+    afterBreakfast.push(record?.afterBreakfast?.value ?? 0);
+    beforeLunch.push(record?.beforeLunch?.value ?? 0);
+    afterLunch.push(record?.afterLunch?.value ?? 0);
+    beforeDinner.push(record?.beforeDinner?.value ?? 0);
+    afterDinner.push(record?.afterDinner?.value ?? 0);
     beforeSleep.push(record?.beforeSleep?.value ?? 0);
   });
   limosisData.value = limosis;
@@ -210,6 +210,7 @@ onShow(() => {
   for (let i = 6; i >= 0; i--) {
     defaultDate.push(dayjs().subtract(i, "day").format("YYYY-MM-DD"));
   }
+  getData();
 });
 
 onShareAppMessage((params) => {
@@ -257,7 +258,7 @@ onLoad(() => {
     videoAd.onClose((status) => {
       if ((status && status.isEnded) || status === undefined) {
         // 正常播放结束，下发奖励
-        this.showRangePicker = true;
+        showRangePicker.value = true;
       }
     });
   }
@@ -272,6 +273,7 @@ onLoad(() => {
   display: flex;
   flex-direction: column;
   position: relative;
+  z-index: 8;
   box-sizing: border-box;
   padding: 32rpx;
   background-color: #fff;

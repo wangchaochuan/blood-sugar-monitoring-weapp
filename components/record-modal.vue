@@ -90,7 +90,12 @@
         <u-button class="cancel" type="error" shape="circle" @click="cancel"
           >取消</u-button
         >
-        <u-button class="confirm" type="primary" shape="circle" @click="confirm"
+        <u-button
+          class="confirm"
+          type="primary"
+          shape="circle"
+          :loading="loading"
+          @click="confirm"
           >确定</u-button
         >
       </view>
@@ -198,7 +203,7 @@ const rules = {
 const showTagPicker = ref(false);
 const openPicker = () => {
   if (props.mode === "create") {
-    showTagPicker = true;
+    showTagPicker.value = true;
   }
 };
 const changeTag = ({ value }) => {
@@ -209,23 +214,29 @@ const changeTag = ({ value }) => {
 const cancel = () => {
   close();
 };
+const loading = ref(false);
 const confirm = async () => {
-  await formRef.value.validate();
-  const data = {
-    date: dayjs(model.date).valueOf(),
-    dateStr: dayjs(model.date).format("YYYY-MM-DD"),
-    userId: userId.value,
-    value: model.value,
-    time: model.time,
-    tag: model.tag,
-    remark: model.remark,
-  };
-  const params = formatRecord(data);
-  console.log(params, "params");
-  const response = await addRecord(params);
-  console.log(response);
-  emits("success", model);
-  close();
+  try {
+    loading.value = true;
+    await formRef.value.validate();
+    const data = {
+      date: dayjs(model.date).valueOf(),
+      dateStr: dayjs(model.date).format("YYYY-MM-DD"),
+      userId: userId.value,
+      value: model.value,
+      time: model.time,
+      tag: model.tag,
+      remark: model.remark,
+    };
+    const params = formatRecord(data);
+    console.log(params, "params");
+    const response = await addRecord(params);
+    console.log(response);
+    emits("success", model);
+    close();
+  } finally {
+    loading.value = false;
+  }
 };
 
 onMounted(() => {
